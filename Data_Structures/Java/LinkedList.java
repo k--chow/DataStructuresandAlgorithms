@@ -1,0 +1,164 @@
+/*
+ *This is a LinkedList implementation.
+ * Running times:
+	Insertion: O(1)
+	Deletion: O(1) + O(n) to access
+	Access: O(n)
+ */
+
+//Make it iterable
+public class LinkedList
+{
+    private Node first;
+    LinkedList()
+    {
+        this.first = null;
+        
+    }
+    
+    public boolean isEmpty()
+    {
+        if (this.first == null)
+        {
+            return true;
+        }
+        return false;
+    }
+    /*fix find!
+    public Node find(int key)
+    {
+        Node current = this.first;
+        if (this.isEmpty())
+        {
+            return null;
+        }
+        else
+        {
+        while(true)
+        {
+            if (current.data != key)
+            {
+                current = current.next;
+            }
+            else
+            {
+                break;
+            }
+        }
+        return current;
+        }
+    }*/
+    
+    public void add(int value)
+    {
+        Node a = new Node(value);
+        if (this.first == null)
+        {
+            this.first = a;
+            this.first.next = null;
+        }
+        else
+        {
+        
+        Node temp = this.first;
+        this.first = a;
+        this.first.next = temp;
+        }
+    }
+    
+    public void remove(int value)
+    {
+        Node current = this.first;
+        Node previous = this.first;
+        while(true)
+        {
+            if (current.data == value)
+            {
+                //remove
+                //if first element
+                if (current == this.first)
+                {
+                    this.first = current.next;
+                }
+                //else
+                else
+                {
+                    //set previous next to current.next;
+                    previous.next = current.next;
+                    
+                }
+                break;
+            }
+            else
+            {
+                if (current.next == null)
+                {
+                    System.out.println("Not found!");
+                    break;
+                }
+                previous = current;
+                current = current.next;
+                
+                //reach and and not found
+            }
+        }
+    }
+    
+    public void displayList()
+    {
+        Node current = this.first;
+        while(true)
+        {
+            if (current.next != null)
+            {
+                System.out.print(current.data + " ");
+                current = current.next;
+            }
+            else
+            {
+                System.out.print(current.data + " ");
+                break;
+            }
+        }
+        System.out.println();
+    }
+    public static void main(String [] args)
+    {
+        LinkedList LL = new LinkedList();
+        LL.add(5);
+        LL.add(6);
+        LL.add(7);
+        LL.displayList();
+        LL.remove(6);
+        LL.displayList();
+        
+    }
+}
+
+class Node implements Comparable<Node>
+{
+    public int data;
+    public Node next;
+    Node(int data)
+    {
+        this.data = data;
+    }
+    
+    public int toInt()
+    {
+        return this.data;
+    }
+    
+    public int compareTo(Node another)
+    {
+        int finale;
+        if (this.toInt() > another.toInt()) finale = 1;
+        else if (this.toInt() < another.toInt()) finale = -1;
+        else
+        {
+            finale = 0;
+        }
+        return finale;
+    }
+}
+

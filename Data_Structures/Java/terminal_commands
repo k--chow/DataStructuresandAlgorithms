@@ -1,0 +1,2 @@
+javac HashMapTest.java
+java HashMapTest
