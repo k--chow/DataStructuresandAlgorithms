@@ -11,26 +11,7 @@
 #include <unordered_map>
 using namespace std;
 
-//Dijkstra's Algorithm with no priorty queue
-
-void d(vector< vector<int> > & matrix, vector<int> & visited, vector<int> & dist, int start, int end)
-{
-    //parameter start
-    visited[start] = 1;
-    deque<int> q;
-    dist[start] = 0;
-    for (int i=0; i<matrix[start].size(); i++)
-    {
-        if (matrix[start][i] != -1 && matrix[start][i] < dist[i]) //edge exists and smaller
-        {
-            //update the distance
-            dist[i] = dist[start] + matrix[start][i];
-        }
-    }
-    //above is only for the first neighbors
-    //now add to queue if its unvisited and smallest
-
-}
+//Dijkstra's Algorithm with no priority queue
 
 void d2(vector< vector<int> > & matrix, vector<int> & visited, vector<int> & dist, int start, int end)
 {
