@@ -11,6 +11,7 @@
 #include <cstdlib>
 using namespace std;
 
+//structs have automatic public classes
 struct Node
 {
     int value;
@@ -19,6 +20,7 @@ struct Node
     Node() : value(0), left(NULL), right(NULL){}
 };
 
+//classes have automatic private classes
 class BinaryTree
 {
     private:
@@ -29,9 +31,40 @@ class BinaryTree
 
         }
 
+        Node* getRoot()
+        {
+            return root;
+        }
+
         Node* find(int key)
         {
+            Node* current = root;
+            while(1)
+            {
+                if (current == NULL)
+                {
+                    return NULL;
+                }
 
+                if (current->value == key)
+                {
+                    return current;
+                }
+                else if(key < current->value)//go left
+                {
+                    current = current->left;
+                }
+                else //go right
+                {
+                    current = current->right;
+                }
+            }
+        }
+
+        void deleteNode(int value)
+        {
+            Node* node = find(value);
+            delete node;
         }
 
         void insert(int value)
@@ -81,12 +114,40 @@ class BinaryTree
 
         }
 
-        void displayTree()
+        void displayTree(Node* node)
         {
-            cout << root->value << endl;
-            cout << root->left->value << endl;
-            cout << root->right->value << endl;
+            if (node == NULL)
+            {
+                return;
+            }
+                cout << " " << node->value << " " << endl;
+                cout << "/" << " " << "|" << endl;
+                displayTree(node->left);
+                displayTree(node->right);
         }
+        /*
+        void displayTree2(Node* node, int counter)
+        {
+            Node* current = node;
+            //display root first
+            cout << node->value << endl;
+            Node* parent = current;
+            while(1)
+            {
+                for(int i=0; i<counter; i++)
+                {
+                    displayTreePrimer(current);
+                }
+                counter*=2; //double counter
+            }
+
+
+        }
+
+        void displayTreePrimer(Node* node)
+        {
+            cout << node->left->value << " " node->right-> value << " ";
+        }*/
 
 };
 
@@ -96,5 +157,8 @@ int main()
     Test.insert(5);
     Test.insert(6);
     Test.insert(4);
-    Test.displayTree();
+    Test.insert(3);
+    Test.displayTree(Test.getRoot());
+    Test.deleteNode(5);
+    Test.displayTree(Test.getRoot());
 }
