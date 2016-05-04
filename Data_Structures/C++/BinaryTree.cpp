@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <cstdlib>
+#include <queue>
 using namespace std;
 
 //structs have automatic public classes
@@ -109,45 +110,84 @@ class BinaryTree
             }
         }
 
-        void traverse()
+        //This method inOrder() traverses a tree in ascending order
+        void inOrder(Node* node)
         {
+            if (node != NULL)
+            {
+                inOrder(node->left);
+                cout << node->value << endl;
+                inOrder(node->right);
+            }
 
         }
+
+        //This method traverses a tree in Preorder.
+        void preOrder(Node* node)
+        {
+            if (node != NULL)
+            {
+                cout << node ->value << endl;
+                preOrder(node->left);
+                preOrder(node->right);
+            }
+        }
+        //This method traverses a tree in Postorder.
+        void postOrder(Node* node)
+        {
+            if (node != NULL)
+            {
+                postOrder(node->left);
+                postOrder(node->right);
+                cout << node->value << endl;
+            }
+        }
+
 
         void displayTree(Node* node)
         {
-            if (node == NULL)
+            queue<Node*> q;
+            q.push(node);
+            while(!q.empty())
             {
-                return;
-            }
-                cout << " " << node->value << " " << endl;
-                cout << "/" << " " << "|" << endl;
-                displayTree(node->left);
-                displayTree(node->right);
-        }
-        /*
-        void displayTree2(Node* node, int counter)
-        {
-            Node* current = node;
-            //display root first
-            cout << node->value << endl;
-            Node* parent = current;
-            while(1)
-            {
-                for(int i=0; i<counter; i++)
+                node = q.front();
+                cout << node->value << " ";
+                q.pop();
+                //queue up neighbors/children
+                if (node->left != NULL)
                 {
-                    displayTreePrimer(current);
+                    q.push(node->left);
                 }
-                counter*=2; //double counter
+                if (node->right != NULL)
+                {
+                    q.push(node->right);
+                }
+
+
             }
-
-
         }
 
-        void displayTreePrimer(Node* node)
+        void minimumValue()
         {
-            cout << node->left->value << " " node->right-> value << " ";
-        }*/
+            Node* current = root;
+            while (current->left != NULL)
+            {
+                current = current->left;
+            }
+            cout << "The minimum value in this tree is: " << current->value << endl;
+        }
+
+        void maximumValue()
+        {
+            Node* current = root;
+            while (current->right != NULL)
+            {
+                current = current->right;
+            }
+            cout << "The maximum value in this tree is: " << current->value << endl;
+        }
+
+
 
 };
 
@@ -159,6 +199,10 @@ int main()
     Test.insert(4);
     Test.insert(3);
     Test.displayTree(Test.getRoot());
-    Test.deleteNode(5);
-    Test.displayTree(Test.getRoot());
+    /*
+    Test.inOrder(Test.getRoot());
+    Test.preOrder(Test.getRoot());
+    Test.postOrder(Test.getRoot());
+    Test.minimumValue();
+    Test.maximumValue();*/
 }
