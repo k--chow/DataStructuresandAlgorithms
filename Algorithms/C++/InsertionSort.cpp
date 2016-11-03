@@ -8,43 +8,40 @@
 #include <stdlib.h>
 #include <string.h>
 using namespace std;
-
-
-
-void sort(int a[])
+void sort(vector<int>& a)
 {
-    for(int i=1; i<5; i++)
+  //2 to size of a
+  for(int i=1; i<a.size(); i++)
+  {
+    int current = i;
+    for(int j=i-1; j>=0; j--)
     {
-        int key = a[i];
-        int j = i;
-
-        while (key < a[j-1])
-        {
-
-            //j is on the left
-            //i is the key
-            j--;
-            //swap
-            a[i] = a[j];
-            a[j] = key;
-            i--;
-
-        }
-        cout << a[0] << a[1] << a[2] << a[3] << a[4] << endl;
-        cout << endl;
-        //cout << j << endl;
-
+      if (a[current] < a[j]) {
+        int temp = a[j];
+        a[j] = a[current];
+        a[current] = temp;
+        current = j;
+      } else {
+        break;
+      }
     }
+  }
 }
 
 int main()
 {
-    int a[5] = {5, 4, 3, 2, 1};
-    sort(a);
-    cout << a[0] << endl;
-    cout << a[1] << endl;
-    cout << a[2] << endl;
-    cout << a[3] << endl;
-    cout << a[4] << endl;
+    ios_base::sync_with_stdio(false);
+    vector<int> v;
+    int n; cin >> n;
+    for(int i=0; i<n; i++)
+    {
+      int e; cin >> e;
+      v.push_back(e);
+    }
+    sort(v);
+    for(int i=0; i<n; i++)
+    {
+      cout << v[i] << endl;
+    }
 
 }

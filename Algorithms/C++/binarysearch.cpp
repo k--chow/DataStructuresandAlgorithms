@@ -36,5 +36,17 @@ bool binarySearch(int low, int high, int target)
 
         };
 
+/*
+Loop Invariant:
 
+Initialization:
+The element is between low and high, or not in the array at all.
 
+Maintenance:
+The element is between low and high, where we reset low or high, since it is sorted,
+we can conclude it is between the two pointer still.
+
+Termination: Eventually, the pointers become equal or the low pointer surpasses the high pointer.
+In the first case, the element is found, and it is between the two pointers (as it is the pointer),
+or the element is not in.
+*/
