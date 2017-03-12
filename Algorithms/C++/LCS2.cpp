@@ -7,8 +7,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-using namespace std;
 
+using namespace std;
+/*
 void LCS(vector<int> a, vector<int> b)
 {
 	vector< vector<int> > dp(a.size()+1);
@@ -45,15 +46,14 @@ void LCS(vector<int> a, vector<int> b)
         }
 
     }
-	//cout << "stack size: " << s.size() << endl;
-
     while (!s.empty()) {
         cout << s.top() << " ";
         s.pop();
     }
-}
+}*/
 
 //implementation of knuth-morris-pratt
+/*
 int KMP(string a, string hint)
 {
     vector<int> dp(hint.size(), 0);
@@ -72,10 +72,7 @@ int KMP(string a, string hint)
                 j = dp[j-1];
             }
         }
-    }/*
-    for(int i=0; i<hint.size(); i++) {
-    	cout << dp[i] << " ";
-    }*/
+    }
     int needle = 0;
     int hay = 0;
     int ans = 0;
@@ -98,21 +95,24 @@ int KMP(string a, string hint)
         }
         counter++;
     }
+
     if (needle == a.size()) ans++;
+
     return ans;
 
-}
+}*/
 
 int main()
 {
     string hint; cin >> hint;
     int N; cin >> N;
-    vector<string> matrixRows;
+    /*
+    vector<string> matrixRows(N, "");
     vector<string> matrixCols(N, "");
     for(int i=0; i<N; i++)
     {
         string given_string; cin >> given_string;
-        matrixRows.push_back(given_string);
+        matrixRows[i] = (given_string);
         for(int j=0; j<N; j++)
         {
             matrixCols[j] += given_string[j];
@@ -120,19 +120,17 @@ int main()
     }
     vector<int> rows;
     vector<int> cols;
-
     //rows - KMP on it
     for(int i=0; i<N; i++) {
-        rows.push_back(KMP(matrixRows[i], hint));
-        //cout << rows[i] << endl;
+        //rows.push_back(KMP(matrixRows[i], hint));
     }
     //cout << endl;
     //columns - KMP on it
     for(int i=0; i<N; i++) {
-        cols.push_back(KMP(matrixCols[i], hint));
-       //cout << cols[i] << endl;
+        //cols.push_back(KMP(matrixCols[i], hint));
     }
     //longest common subsequence
-	LCS(rows, cols);
-	return 0;
+	//LCS(rows, cols);
+    cout << "hi" << endl;*/
+    return 0;
 }

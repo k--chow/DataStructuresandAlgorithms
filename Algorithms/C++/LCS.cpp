@@ -13,24 +13,23 @@ using namespace std;
 int main()
 {
     string a, b;
-    a = " DOOOM";
-    b = " MOD";
+    cin >> a >> b;
     //a = "abe";
     //b = "cab";
     //12 characters
-    vector< vector<int> > LCS(a.size());
-    for(int i=0; i<a.size(); i++)
+    vector< vector<int> > LCS(a.size()+1);
+    for(int i=0; i<a.size()+1; i++)
     {
-        for(int j=0; j<a.size(); j++)
+        for(int j=0; j<b.size()+1; j++)
         {
             LCS[i].push_back(0);
         }
     }
 
-    for(int i=0; i<a.size(); i++)//a
+    for(int i=0; i<a.size()+1; i++)//a
     {
         string c = a.substr(1, i);
-        for(int j=0; j<a.size(); j++)//b
+        for(int j=0; j<b.size()+1; j++)//b
         {
             string d = b.substr(1, j);
             //compare last characters
@@ -50,6 +49,7 @@ int main()
             }
         }
     }
+    /*
     for(int i=0; i<a.size(); i++)
     {
         for(int j=0; j<a.size(); j++)
@@ -57,6 +57,14 @@ int main()
             cout << LCS[i][j] << " ";
         }
         cout << endl;
+    }*/
+    cout << LCS[a.size()][b.size()] << endl;
+
+    //recover solution
+
+    while(!(i == 0 || j == 0))
+    {
+
     }
 
 
